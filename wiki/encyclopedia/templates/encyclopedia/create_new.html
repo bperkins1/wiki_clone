@@ -1,0 +1,34 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Submit New Entry
+{% endblock %}
+
+{% block body %}
+
+{% if entry_title in entries %}
+	<h1>
+		Error: 
+	</h1>
+	<h2>
+		an entry with that title already exists
+	</h2>
+{% else %}
+	<h1>Create new entry</h1>
+	<form action="" method="POST">{% csrf_token %}
+	  <div>
+	    <label for="title">Title: </label>
+	    <input type="text" name="title" required>
+	  </div>
+	  <div>
+	    <label for="submission">Submission: </label>
+	    <textarea placeholder="Your entry in Markdown format:" name="submission" required></textarea>
+	  </div>
+	  <div>
+	    <input type="submit" value="Submit">
+	  </div>
+	</form>
+
+{% endif %}
+<!--  when form submit, error message if title exists(if in util.list_entries(). Else, save form to markdown, then reroute to new page. !-->
+{% endblock %}
